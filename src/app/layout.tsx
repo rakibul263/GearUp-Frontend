@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("lenis", "font-sans", notoSansHeading.variable)}>
+    <html lang="en" data-scroll-behavior="smooth" className={cn("lenis", "font-sans", notoSansHeading.variable)}>
       <body className="antialiased min-h-screen flex flex-col bg-[#f1f5f9] text-slate-800 selection:bg-primary/20 selection:text-primary">
         <LenisProvider>
           <AuthProvider>

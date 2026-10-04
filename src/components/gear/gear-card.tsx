@@ -36,6 +36,10 @@ export function GearCard({ gear, featuredBadge }: GearCardProps) {
   const rating = gear.ratingSummary?.averageRating || 4.9;
   const reviewsCount = gear.ratingSummary?.reviewCount || 16;
 
+  const fallbackImg =
+    "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80";
+  const [imgSrc, setImgSrc] = useState(gear.imageUrl || fallbackImg);
+
   return (
     <>
       <div className="group relative bg-white rounded-[2rem] p-3.5 border border-slate-100 shadow-[0_10px_30px_-12px_rgba(15,23,42,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(37,99,235,0.12)] transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
@@ -54,13 +58,11 @@ export function GearCard({ gear, featuredBadge }: GearCardProps) {
           {/* Product Image */}
           <Link href={`/gears/${gear.id}`} className="block w-full h-full">
             <Image
-              src={
-                gear.imageUrl ||
-                "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80"
-              }
+              src={imgSrc}
               alt={gear.name}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              onError={() => setImgSrc(fallbackImg)}
               className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             />
           </Link>
